@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daiana Ojeda — AI Art Direction | Video | Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --dark2: #161616;
+    --dark3: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --white: #f0ede8;
+    --muted: rgba(240,237,232,0.45);
+    --accent: #c8b89a;
+    --accent2: #e8d5b0;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 4vw;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 4vw 6vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(200,184,154,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 50%);
+  }
+  .hero-noise {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .hero-line {
+    position: absolute; top: 0; left: 4vw;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--border2) 30%, var(--border2) 70%, transparent);
+  }
+  .hero-content { position: relative; }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 14vw, 13rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+  .hero-title span { color: var(--accent); }
+  .hero-sub {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; gap: 1.6rem; flex-wrap: wrap;
+  }
+  .hero-sub span::before { content: "·  "; color: var(--accent); }
+  .hero-scroll {
+    position: absolute; right: 4vw; bottom: 6vh;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 3rem;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* ── SECTION BASE ── */
+  section { padding: 7rem 4vw; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 4rem;
+    height: 1px;
+    background: var(--border2);
+  }
+
+  /* ── REEL ── */
+  #reel { background: var(--dark); }
+  .reel-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 2.5rem;
+    color: var(--white);
+  }
+  .reel-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .reel-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,184,154,0.04) 0%, transparent 70%);
+  }
+  .play-btn {
+    width: 72px; height: 72px;
+    border: 1px solid rgba(200,184,154,0.5);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+    position: relative; z-index: 1;
+  }
+  .play-btn:hover { border-color: var(--accent); background: rgba(200,184,154,0.08); transform: scale(1.08); }
+  .play-btn svg { width: 24px; height: 24px; fill: var(--accent); margin-left: 4px; }
+  .reel-label {
+    position: absolute; bottom: 1.5rem; left: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .reel-year {
+    position: absolute; bottom: 1.5rem; right: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+  }
+
+  /* ── WORK ── */
+  #work { background: var(--black); }
+  .work-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .work-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+  .work-count {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .project-card {
+    background: var(--black);
+    padding: 2rem 1.8rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    cursor: pointer;
+    transition: background 0.25s;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,184,154,0.04) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover { background: var(--dark2); }
+  .project-card:hover::before { opacity: 1; }
+  .project-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-thumb::after {
+    content: '▶';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    font-size: 1.2rem; color: rgba(200,184,154,0.2);
+    transition: color 0.2s;
+  }
+  .project-card:hover .project-thumb::after { color: var(--accent); }
+  .project-meta {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .project-year {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(200,184,154,0.25);
+    padding: 2px 8px;
+  }
+  .project-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .project-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .project-arrow {
+    margin-top: auto;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(200,184,154,0);
+    font-family: var(--font-mono);
+    transition: color 0.2s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .project-arrow::before { content: '→'; font-size: 1rem; }
+  .project-card:hover .project-arrow { color: var(--accent); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--dark); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: start;
+  }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+  .about-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-family: 'DM Sans', serif;
+    font-weight: 300;
+  }
+  .about-body {
+    font-size: 0.95rem;
+    color: rgba(240,237,232,0.7);
+    line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+  .skills-list {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .skill-pill {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(200,184,154,0.2);
+    padding: 0.35rem 0.85rem;
+  }
+  .about-right { padding-top: 1rem; }
+  .stat-row {
+    border-top: 1px solid var(--border);
+    padding: 1.4rem 0;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .stat-row:last-child { border-bottom: 1px solid var(--border); }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--accent); font-size: 1.4rem; }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    max-width: 12rem;
+    line-height: 1.4;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--black); }
+  .contact-inner {
+    max-width: 700px;
+  }
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .contact-title span { color: var(--accent); }
+  .contact-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 480px;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+    padding: 1.2rem 0;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1rem;
+    transition: padding-left 0.2s;
+    font-weight: 400;
+  }
+  .contact-link:last-child { border-bottom: 1px solid var(--border); }
+  .contact-link:hover { padding-left: 0.5rem; }
+  .contact-link:hover .link-arrow { color: var(--accent); }
+  .link-type {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 7rem;
+  }
+  .link-arrow { color: var(--muted); transition: color 0.2s; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    background: var(--black);
+  }
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: rgba(240,237,232,0.25);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 1.2rem 5vw; }
+    .nav-links { display: none; }
+    section { padding: 5rem 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">D.OJEDA</a>
+  <ul class="nav-links">
+    <li><a href="#reel">Reel</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content fade-up">
+    <p class="hero-eyebrow">Portfolio 2025</p>
+    <h1 class="hero-title">DAIANA<br><span>OJEDA</span></h1>
+    <div class="hero-sub">
+      <span>AI Art Direction</span>
+      <span>Video Editing</span>
+      <span>Motion Graphic</span>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- REEL -->
+<section id="reel">
+  <p class="section-label">Showreel</p>
+  <h2 class="reel-title fade-up">EDICIÓN &amp; MOTION GRAPHIC</h2>
+  <div class="reel-frame fade-up" onclick="window.open('https://edicioneef8.myportfolio.com/reel-edicion-motion-graphic', '_blank')">
+    <div class="play-btn">
+      <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+    </div>
+    <span class="reel-label">Reel de dirección y edición</span>
+    <span class="reel-year">2025</span>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <p class="section-label">Proyectos</p>
+  <div class="work-header">
+    <h2 class="work-title fade-up">WORK</h2>
+    <span class="work-count">06 proyectos</span>
+  </div>
+  <div class="projects-grid">
+
+    <a class="project-card fade-up" href="https://edicioneef8.myportfolio.com/mmg" target="_blank">
+      <div class="project-thumb">MMG</div>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-tag">Motion</span>
+      </div>
+      <h3 class="project-name">MMG</h3>
+      <p class="project-desc">Proyecto de motion graphics y dirección visual.</p>
+      <span class="project-arrow">Ver proyecto</span>
+    </a>
+
+    <a class="project-card fade-up" href="https://edicioneef8.myportfolio.com/intro-documental" target="_blank">
+      <div class="project-thumb">DOCUMENTAL</div>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-tag">Edición</span>
+      </div>
+      <h3 class="project-name">INTRO DOCUMENTAL</h3>
+      <p class="project-desc">Introducción y apertura cinematográfica para documental.</p>
+      <span class="project-arrow">Ver proyecto</span>
+    </a>
+
+    <a class="project-card fade-up" href="https://edicioneef8.myportfolio.com/examedi" target="_blank">
+      <div class="project-thumb">EXAMEDI</div>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-tag">Post</span>
+      </div>
+      <h3 class="project-name">EXAMEDI</h3>
+      <p class="project-desc">Postproducción y dirección visual para marca de salud.</p>
+      <span class="project-arrow">Ver proyecto</span>
+    </a>
+
+    <a class="project-card fade-up" href="https://edicioneef8.myportfolio.com/caja-los-andes" target="_blank">
+      <div class="project-thumb">CAJA LOS ANDES</div>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-tag">Motion</span>
+      </div>
+      <h3 class="project-name">CAJA LOS ANDES</h3>
+      <p class="project-desc">Piezas audiovisuales y motion para campaña institucional.</p>
+      <span class="project-arrow">Ver proyecto</span>
+    </a>
+
+    <a class="project-card fade-up" href="https://edicioneef8.myportfolio.com/invisalign-itero" target="_blank">
+      <div class="project-thumb">INVISALIGN ITERO</div>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-tag">AI + Post</span>
+      </div>
+      <h3 class="project-name">INVISALIGN ITERO</h3>
+      <p class="project-desc">Dirección de arte con IA y postproducción para marca global.</p>
+      <span class="project-arrow">Ver proyecto</span>
+    </a>
+
+    <a class="project-card fade-up" href="https://edicioneef8.myportfolio.com/betterplan" target="_blank">
+      <div class="project-thumb">BETTERPLAN</div>
+      <div class="project-meta">
+        <span class="project-year">2024</span>
+        <span class="project-tag">Edición</span>
+      </div>
+      <h3 class="project-name">BETTERPLAN</h3>
+      <p class="project-desc">Edición y narrativa visual para fintech latinoamericana.</p>
+      <span class="project-arrow">Ver proyecto</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Sobre mí</p>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-title fade-up">VISIÓN,<br>NARRATIVA<br>&amp; <em>movimiento.</em></h2>
+      <p class="about-body fade-up">
+        Soy Daiana Ojeda, editora de video, directora de arte con IA y especialista en motion graphic. 
+        Trabajo en la intersección entre la narrativa cinematográfica, la tecnología y el diseño visual.
+      </p>
+      <p class="about-body fade-up">
+        Cada proyecto es una oportunidad para contar algo de una manera que no se ha visto antes — 
+        con intención, ritmo y un punto de vista claro.
+      </p>
+      <div class="skills-list fade-up">
+        <span class="skill-pill">AI Art Direction</span>
+        <span class="skill-pill">Video Editing</span>
+        <span class="skill-pill">Motion Graphic</span>
+        <span class="skill-pill">DCO</span>
+        <span class="skill-pill">Postproducción</span>
+        <span class="skill-pill">After Effects</span>
+        <span class="skill-pill">Premiere</span>
+        <span class="skill-pill">Midjourney</span>
+      </div>
+    </div>
+    <div class="about-right fade-up">
+      <div class="stat-row">
+        <span class="stat-num">6<span>+</span></span>
+        <span class="stat-label">Proyectos en producción este año</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">3<span>+</span></span>
+        <span class="stat-label">Años de experiencia en video y motion</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">IA<span>&amp;</span>AV</span>
+        <span class="stat-label">Fusión de inteligencia artificial y audiovisual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contacto</p>
+  <div class="contact-inner">
+    <h2 class="contact-title fade-up">HABLEMOS<br>DE TU <span>PROYECTO.</span></h2>
+    <p class="contact-sub fade-up">Disponible para proyectos freelance, colaboraciones y trabajos a largo plazo. No dudes en escribirme.</p>
+    <div class="contact-links fade-up">
+      <a class="contact-link" href="mailto:daiana@email.com">
+        <span class="link-type">Email</span>
+        <span>daiana@email.com</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a class="contact-link" href="https://edicioneef8.myportfolio.com/contact" target="_blank">
+        <span class="link-type">Formulario</span>
+        <span>Portfolio Contact</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/" target="_blank">
+        <span class="link-type">LinkedIn</span>
+        <span>Daiana Ojeda</span>
+        <span class="link-arrow">↗</span>
+      </a>
+      <a class="contact-link" href="https://www.instagram.com/" target="_blank">
+        <span class="link-type">Instagram</span>
+        <span>@daiana.ojeda</span>
+        <span class="link-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Daiana Ojeda — All rights reserved</span>
+  <span class="footer-logo">D.OJEDA</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
